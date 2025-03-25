@@ -18,6 +18,15 @@ import {
   FaGithub,
   FaSteam,
 } from 'react-icons/fa';
+import { FloatingDock } from '@/components/ui/floating-dock';
+import {
+  IconBrandGithub,
+  IconBrandX,
+  IconExchange,
+  IconHome,
+  IconNewSection,
+  IconTerminal2,
+} from '@tabler/icons-react';
 
 interface NavItem {
   link: string;
@@ -52,6 +61,53 @@ export const FloatingNav: React.FC<FloatingNavProps> = ({
       }
     }
   });
+
+  const links = [
+    {
+      title: 'Discord',
+      icon: (
+        <FaDiscord className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: 'https://discord.com/users/521972197825445888',
+    },
+
+    {
+      title: 'Instagram',
+      icon: (
+        <FaInstagram className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: 'https://www.instagram.com/ez_ian02',
+    },
+    {
+      title: 'Facebook',
+      icon: (
+        <FaFacebook className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: 'https://web.facebook.com/erzie.aldrian/',
+    },
+    {
+      title: 'LinkedIn',
+      icon: (
+        <FaLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: 'https://www.linkedin.com/in/muhamad-erzie-aldrian-nugraha/',
+    },
+
+    {
+      title: 'Github',
+      icon: (
+        <FaGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: 'https://github.com/erziealdrian02',
+    },
+    {
+      title: 'Steam',
+      icon: (
+        <FaSteam className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: 'https://steamcommunity.com/id/N3nPl4yZz/',
+    },
+  ];
 
   return (
     <>
@@ -100,24 +156,7 @@ export const FloatingNav: React.FC<FloatingNavProps> = ({
             </div>
             {atTop && (
               <div className="flex space-x-4">
-                <Link href="#">
-                  <FaDiscord size={20} />
-                </Link>
-                <Link href="#">
-                  <FaInstagram size={20} />
-                </Link>
-                <Link href="#">
-                  <FaFacebook size={20} />
-                </Link>
-                <Link href="#">
-                  <FaLinkedin size={20} />
-                </Link>
-                <Link href="#">
-                  <FaGithub size={20} />
-                </Link>
-                <Link href="#">
-                  <FaSteam size={20} />
-                </Link>
+                <FloatingDock mobileClassName="translate-y-20" items={links} />
               </div>
             )}
           </div>

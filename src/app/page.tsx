@@ -11,10 +11,11 @@ import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 import { TypewriterEffect } from '@/components/ui/typewriter-effect';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 import CircularText from '@/components/ui/circular-text';
-import { FloatingDock } from '@/components/ui/floating-dock';
+import ScrollVelocity from '@/components/ui/scroll-velocity';
 import { Button } from '@/components/ui/moving-border';
 import { SparklesCore } from '@/components/ui/sparkles';
 import DecryptedText from '@/components/ui/decrypt-text';
+import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
 import {
   Modal,
   ModalBody,
@@ -329,79 +330,26 @@ export default function Home() {
     },
   ];
 
+  const [velocity, setVelocity] = useState(1); // Default value for velocity
+
   return (
     <main className="flex flex-col items-center justify-center min-h-[200vh] py-2">
       <FloatingNav navItems={navItems} />
 
-      <div className="relative flex flex-col items-center justify-center w-full h-full overflow-hidden bg-white dark:bg-black mt-20">
+      <div className="relative flex flex-col items-center justify-center w-full h-full overflow-hidden bg-white dark:bg-black mt-32 mb-48">
         <div className="container" id="home">
           <div className="flex flex-wrap">
             {/* Left Section */}
             <div className="w-full px-4 self-center lg:w-1/2">
-              <h1 className="text-base font-semibold text-primaryLight dark:text-blue md:text-xl">
+              <h1 className="text-base font-semibold text-black dark:text-white md:text-xl">
                 <span className="block md:hidden mt-1 text-center md:text-left text-2xl md:text-4xl font-boldlg:text-[40px]">
                   Muhamad Erzie Aldrian Nugraha
                 </span>
               </h1>
               <TypewriterEffect words={words} />
-              <DecryptedText
-                text="aaaaaaaaaaaaaaaaaaaaa"
-                speed={100}
-                maxIterations={20}
-                characters="ABCD1234!?"
-                className="revealed"
-                parentClassName="all-letters"
-                encryptedClassName="encrypted"
-                animateOn="reload"
-              />
-              <p className="max-w-xl mb-10 text-base font-medium text-justify text-secondary dark:text-slate-400 lg:text-lg">
-                Saya adalah lulusan baru dari{' '}
-                <b className="text-dark dark:text-slate-200">
-                  Universitas Indraprasta PGRI{' '}
-                </b>
-                dengan gelar di
-                <b className="text-dark dark:text-slate-200">
-                  {' '}
-                  Teknik Informatika
-                </b>
-                , dengan pengalaman sebagai
-                <b className="text-dark dark:text-slate-200"> Front-End </b>,
-                <b className="text-dark dark:text-slate-200"> Back-End </b>, dan
-                <b className="text-dark dark:text-slate-200">
-                  Fullstack Developer
-                </b>
-                , serta
-                <b className="text-dark dark:text-slate-200"> UI/UX Designer</b>
-                . Saya aktif dalam kegiatan ekstrakurikuler dan ingin terhubung
-                dengan profesional di industri.
-              </p>
-              <Link href="/">
-                <Button
-                  borderRadius="2.75rem"
-                  className="bg-white dark:bg-gray-900 text-black dark:text-white border-neutral-200 dark:border-slate-800 justify-center"
-                >
-                  Download CV
-                </Button>
-              </Link>
-              {/* <Link
-                href="/some-page"
-                className="px-8 py-3 text-base font-semibold text-white transition duration-300 ease-in-out bg-primaryLight rounded-full dark:bg-blue hover:bg-slate-600 hover:opacity-80 hover:shadow-lg"
-              >
-                <span className="mr-2">Download CV</span>
-              </Link> */}
-            </div>
-
-            {/* Right Section */}
-            <div className="w-full px-4 self-end lg:w-1/2">
-              <div className="relative mt-10 mb-10 lg:mt-9 lg:right-0">
-                <Image
-                  src="/images/profiles/me_ilustration.png"
-                  alt="Thats Me"
-                  width={400}
-                  height={200}
-                  className="relative z-10 max-w-full h-[420px] mx-auto"
-                />
-                <span className="absolute left-1/2 top-[1.5px] -translate-x-1/2 md:scale-125">
+              <div className="md:hidden w-full px-4 self-end lg:w-1/2 flex justify-center relative">
+                {/* Lingkaran Teks */}
+                <span className="absolute w-[320px] h-[320px] md:w-[400px] md:h-[400px] flex items-center justify-center pointer-events-none">
                   <CircularText
                     text="11000*11*11111010010"
                     onHover="speedUp"
@@ -409,13 +357,165 @@ export default function Home() {
                     className="custom-class"
                   />
                 </span>
+
+                {/* Card dengan animasi 3D */}
+                <CardContainer className="inter-var z-10">
+                  <CardBody className="relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:border-white/[0.2] w-auto sm:w-[30rem] h-auto rounded-full flex items-center justify-center border-none bg-transparent ">
+                    {/* Gambar dalam Card */}
+                    <CardItem
+                      translateZ={100}
+                      className="w-[240px] sm:w-[250px] md:w-[300px] h-[240px] sm:h-[250px] md:h-[300px] rounded-full overflow-hidden -mt-10 flex justify-center"
+                    >
+                      <Image
+                        src="/images/profiles/me_ilustration.png"
+                        alt="Thats Me"
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-cover"
+                      />
+                    </CardItem>
+                  </CardBody>
+                </CardContainer>
               </div>
-              {/* <div className="flex items-center justify-center">
-                <FloatingDock mobileClassName="translate-y-20" items={links} />
-              </div> */}
+              <p className="max-w-xl mb-10 text-base font-medium text-justify text-secondary dark:text-slate-400 lg:text-lg">
+                <DecryptedText
+                  text="Saya adalah lulusan baru dari Universitas Indraprasta PGRI dengan"
+                  speed={100}
+                  maxIterations={20}
+                  characters="abcdefg123!@#$%^&*"
+                  className="revealed"
+                  parentClassName="all-letters"
+                  encryptedClassName="encrypted"
+                  animateOn="view"
+                />
+                <br />
+                <DecryptedText
+                  text="gelar di Teknik Informatika, dengan pengalaman sebagai "
+                  speed={100}
+                  maxIterations={20}
+                  characters="abcdefg123!@#$%^&*"
+                  className="revealed"
+                  parentClassName="all-letters"
+                  encryptedClassName="encrypted"
+                  animateOn="view"
+                />
+                <b className="text-dark dark:text-slate-200">
+                  <DecryptedText
+                    text="Front-End"
+                    speed={100}
+                    maxIterations={20}
+                    characters="abcdefg123!@#$%^&*"
+                    className="revealed"
+                    parentClassName="all-letters"
+                    encryptedClassName="encrypted"
+                    animateOn="view"
+                  />
+                </b>
+                ,{' '}
+                <b className="text-dark dark:text-slate-200">
+                  <DecryptedText
+                    text="Back-End"
+                    speed={100}
+                    maxIterations={20}
+                    characters="abcdefg123!@#$%^&*"
+                    className="revealed"
+                    parentClassName="all-letters"
+                    encryptedClassName="encrypted"
+                    animateOn="view"
+                  />
+                </b>
+                , dan{' '}
+                <b className="text-dark dark:text-slate-200">
+                  <DecryptedText
+                    text="Fullstack Developer"
+                    speed={100}
+                    maxIterations={20}
+                    characters="abcdefg123!@#$%^&*"
+                    className="revealed"
+                    parentClassName="all-letters"
+                    encryptedClassName="encrypted"
+                    animateOn="view"
+                  />
+                </b>
+                , serta{' '}
+                <b className="text-dark dark:text-slate-200">
+                  <DecryptedText
+                    text="UI/UX Designer"
+                    speed={100}
+                    maxIterations={20}
+                    characters="abcdefg123!@#$%^&*"
+                    className="revealed"
+                    parentClassName="all-letters"
+                    encryptedClassName="encrypted"
+                    animateOn="view"
+                  />
+                </b>
+                . Saya aktif dalam kegiatan ekstrakurikuler dan ingin terhubung
+                dengan profesional di industri.
+              </p>
+              <div className="text-center md:text-left mb-9">
+                <a
+                  href="/resume/Muhamad Erzie Aldrian Nugraha-resume.pdf"
+                  download
+                >
+                  <Button
+                    borderRadius="2.75rem"
+                    className="bg-white dark:bg-gray-900 text-black dark:text-white border-neutral-200 dark:border-slate-800 justify-center"
+                  >
+                    Download CV
+                  </Button>
+                </a>
+              </div>
+            </div>
+
+            {/* Right Section */}
+            <div className="hidden md:flex w-full px-4 self-end lg:w-1/2 justify-center">
+              <div className="w-full px-4 self-end lg:w-1/2 flex justify-center relative">
+                {/* Lingkaran Teks */}
+                <span className="absolute w-[320px] h-[320px] md:w-[400px] md:h-[400px] flex items-center justify-center pointer-events-none">
+                  <CircularText
+                    text="11000*11*11111010010"
+                    onHover="speedUp"
+                    spinDuration={20}
+                    className="custom-class"
+                  />
+                </span>
+
+                {/* Card dengan animasi 3D */}
+                <CardContainer className="inter-var z-10">
+                  <CardBody className="relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:border-white/[0.2] w-auto sm:w-[30rem] h-auto rounded-full flex items-center justify-center border-none bg-transparent ">
+                    {/* Gambar dalam Card */}
+                    <CardItem
+                      translateZ={100}
+                      className="w-[200px] sm:w-[250px] md:w-[300px] h-[200px] sm:h-[250px] md:h-[300px] rounded-full overflow-hidden -mt-10 flex justify-center"
+                    >
+                      <Image
+                        src="/images/profiles/me_ilustration.png"
+                        alt="Thats Me"
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-cover"
+                      />
+                    </CardItem>
+                  </CardBody>
+                </CardContainer>
+              </div>
             </div>
           </div>
         </div>
+
+        <ScrollVelocity
+          texts={['', 'Muhamad Erzie Aldrian Nugraha']}
+          // velocity={velocity}
+          numCopies={10}
+          className="custom-scroll-text"
+        />
+        <ScrollVelocity
+          texts={[
+            'Back-end Developer Front-end Developer UI/UX Designer Fullstack Developer',
+          ]}
+          numCopies={10}
+        />
       </div>
 
       <div className="h-96 relative w-full overflow-hidden bg-black flex flex-col items-center justify-center mt-2">
