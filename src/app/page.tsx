@@ -528,7 +528,7 @@ export default function Home() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="absolute top-16 transform -translate-x-1/2 z-50"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-center text-shadow-neon animate-neonflicker">
+          <h1 className="text-4xl md:text-7xl font-bold text-center text-shadow-neon animate-neonflicker">
             Some of My Skills
           </h1>
         </motion.div>

@@ -93,10 +93,10 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-24 relative rounded-2xl border border-b-0 shrink-0 border-slate-700 px-8 py-6 md:w-[150px]"
+            className="w-32 relative rounded-2xl border border-b-0 border-slate-800 shrink-0 shadow-gray-300 px-8 py-6 md:w-[150px]"
             style={{
               background:
-                'linear-gradient(180deg, var(--slate-800), var(--slate-900)',
+                'radial-gradient(circle, var(--slate-900) 0%, var(--slate-800) 70%)',
             }}
             key={item.name}
           >
@@ -104,7 +104,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
             <img
               src={item.src}
               alt={item.alt}
-              className="w-24 h-24 object-contain filter"
+              className="w-32 md:w-24 h-24 object-contain filter"
             />
             {/* </blockquote> */}
           </li>
