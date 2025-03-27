@@ -71,7 +71,7 @@ export default function Home() {
     },
 
     {
-      title: 'Editorially',
+      title: 'Login Reimbursement System',
       link: 'https://editorially.org',
       thumbnail:
         'https://aceternity.com/images/products/thumbnails/new/editorially.png',
