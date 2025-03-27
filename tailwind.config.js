@@ -15,12 +15,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      textShadow: {
+        neon: '0 0 5px rgba(51, 255, 255, 0.4), 0 0 10px rgba(51, 255, 255, 0.4), 0 0 20px rgba(51, 255, 255, 0.4), 0 0 40px #33FFFF, 0 0 80px #33FFFF, 0 0 120px #33FFFF',
+      },
       animation: {
         scroll:
           'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
         loop: 'loop 20s linear infinite',
         bounce: 'bounce 1s infinite',
         verticalMove: 'verticalMove 20s ease-in-out infinite',
+        neonflicker: 'neonflicker 1.5s infinite alternate',
       },
       keyframes: {
         scroll: {
@@ -45,6 +49,13 @@ module.exports = {
         verticalMove: {
           '0%, 100%': { transform: 'translateY(-10%)' },
           '50%': { transform: 'translateY(0)' },
+        },
+        neonflicker: {
+          '0%, 18%, 22%, 25%, 53%, 57%, 100%': {
+            textShadow:
+              '0 0 5px rgba(51, 255, 255, 0.4), 0 0 10px rgba(51, 255, 255, 0.4), 0 0 20px rgba(51, 255, 255, 0.4), 0 0 40px #33FFFF, 0 0 80px #33FFFF, 0 0 120px #33FFFF',
+          },
+          '20%, 24%, 55%': { textShadow: 'none' },
         },
       },
       borderRadius: {

@@ -15,7 +15,9 @@ import ScrollVelocity from '@/components/ui/scroll-velocity';
 import { Button } from '@/components/ui/moving-border';
 import { SparklesCore } from '@/components/ui/sparkles';
 import DecryptedText from '@/components/ui/decrypt-text';
+import { motion } from 'motion/react';
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
+import { LampContainer } from '@/components/ui/lamp';
 import {
   Modal,
   ModalBody,
@@ -337,6 +339,7 @@ export default function Home() {
       <FloatingNav navItems={navItems} />
 
       <div className="relative flex flex-col items-center justify-center w-full h-full overflow-hidden bg-white dark:bg-black mt-32 mb-48">
+        {/* <Boxes /> */}
         <div className="container" id="home">
           <div className="flex flex-wrap">
             {/* Left Section */}
@@ -518,18 +521,45 @@ export default function Home() {
         />
       </div>
 
-      <div className="h-96 relative w-full overflow-hidden bg-black flex flex-col items-center justify-center mt-2">
+      <div className="w-full relative overflow-hidden flex flex-col items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="absolute top-16 transform -translate-x-1/2 z-50"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold text-center text-shadow-neon animate-neonflicker">
+            Some of My Skills
+          </h1>
+        </motion.div>
+
+        <LampContainer className="w-full min-h-screen flex flex-col items-center justify-end">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+            className="w-full mt-2 z-40"
+          >
+            <InfiniteMovingCards
+              items={testimonials}
+              direction="right"
+              speed="slow"
+              // className="-mt-14"
+            />
+          </motion.div>
+        </LampContainer>
+      </div>
+
+      {/* <div className="h-full relative w-full overflow-hidden bg-black flex flex-col items-center justify-center">
         <h1 className="md:text-5xl text-md font-bold text-center text-white relative z-20">
           Some of My Skills
         </h1>
         <div className="w-[40rem] h-40 relative">
-          {/* Gradients */}
           <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
           <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
           <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
           <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
 
-          {/* Core component */}
           <SparklesCore
             background="transparent"
             minSize={0.4}
@@ -539,17 +569,22 @@ export default function Home() {
             particleColor="#FFFFFF"
           />
 
-          {/* Radial Gradient to prevent sharp edges */}
           <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
         </div>
         <div className="absolute inset-0 w-full h-full bg-black z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+
         <InfiniteMovingCards
           items={testimonials}
           direction="right"
           speed="slow"
-          className="h-full -mt-20 z-30"
+          className="h-full -mt-20 z-30 pointer-events-none"
         />
-      </div>
+      </div> */}
+      <HeroParallax products={products} />
+      {/* <Navbar className="bg-white shadow-lg rounded-lg" /> */}
+      <h1 className="text-3xl text-orange-600 font-bold underline">
+        Hello world!
+      </h1>
 
       <Modal>
         <ModalTrigger className="mt-10 px-6 py-3 bg-black dark:bg-white dark:text-black text-white rounded-lg shadow-md hover:bg-gray-800 transition">
@@ -572,11 +607,6 @@ export default function Home() {
           </ModalContent>
         </ModalBody>
       </Modal>
-      <HeroParallax products={products} />
-      {/* <Navbar className="bg-white shadow-lg rounded-lg" /> */}
-      <h1 className="text-3xl text-orange-600 font-bold underline">
-        Hello world!
-      </h1>
     </main>
   );
 }
