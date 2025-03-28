@@ -17,7 +17,8 @@ import { SparklesCore } from '@/components/ui/sparkles';
 import DecryptedText from '@/components/ui/decrypt-text';
 import { motion } from 'motion/react';
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
-import ParallaxPage from '@/components/ui/paralax-page';
+import { StickyScroll } from '@/components/ui/scroll-float';
+import ParalaxSection from '@/components/ui/paralax-section';
 import { LampContainer } from '@/components/ui/lamp';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
 import {
@@ -317,6 +318,55 @@ export default function Home() {
     },
   ];
 
+  const content = [
+    {
+      title: 'Collaborative Editing',
+      description:
+        'Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.',
+      content: (
+        <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
+          Collaborative Editing
+        </div>
+      ),
+    },
+    {
+      title: 'Real time changes',
+      description:
+        'See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.',
+      content: (
+        <div className="flex h-full w-full items-center justify-center text-white">
+          <Image
+            src="/images/portofolio/mushroom/mushroom_detail.png"
+            width={300}
+            height={300}
+            className="h-full w-full object-cover"
+            alt="linear board demo"
+          />
+        </div>
+      ),
+    },
+    {
+      title: 'Version control',
+      description:
+        "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] text-white">
+          Version control
+        </div>
+      ),
+    },
+    {
+      title: 'Running out of content',
+      description:
+        "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
+          Running out of content
+        </div>
+      ),
+    },
+  ];
+
   const url = (name: string, wrap = false) =>
     `${
       wrap ? 'url(' : ''
@@ -325,7 +375,6 @@ export default function Home() {
     }`;
 
   const [velocity, setVelocity] = useState(1); // Default value for velocity
-  const parallax = useRef<IParallax>(null); // Define the parallax reference
 
   return (
     <main className="flex flex-col items-center justify-center min-h-[200vh] py-2">
@@ -543,6 +592,48 @@ export default function Home() {
         </LampContainer>
       </div>
 
+      <HeroParallax products={products} />
+
+      <HeroParallax products={products} />
+
+      <div className="w-full py-4">
+        <ParalaxSection />
+      </div>
+
+      <div className="relative flex flex-col items-center justify-center w-full h-full bg-red-500">
+        <h1 className="text-3xl text-orange-600 font-bold underline">
+          Hello world!
+        </h1>
+
+        <Modal>
+          <ModalTrigger className="mt-10 px-6 py-3 bg-black dark:bg-white dark:text-black text-white rounded-lg shadow-md hover:bg-gray-800 transition">
+            Open Gallery
+          </ModalTrigger>
+          <ModalBody>
+            <ModalContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {images.map((src, index) => (
+                  <Image
+                    key={index}
+                    src={src}
+                    alt={`Gallery image ${index + 1}`}
+                    width={300}
+                    height={200}
+                    className="rounded-lg"
+                  />
+                ))}
+              </div>
+            </ModalContent>
+          </ModalBody>
+        </Modal>
+      </div>
+
+      {/* <div className="w-full py-4">
+        <StickyScroll content={content} />
+      </div> */}
+
+      {/* <ParalaxJobSection /> */}
+      {/* <Navbar className="bg-white shadow-lg rounded-lg" /> */}
       {/* <div className="h-full relative w-full overflow-hidden bg-black flex flex-col items-center justify-center">
         <h1 className="md:text-5xl text-md font-bold text-center text-white relative z-20">
           Some of My Skills
@@ -573,192 +664,6 @@ export default function Home() {
           className="h-full -mt-20 z-30 pointer-events-none"
         />
       </div> */}
-      <HeroParallax products={products} />
-
-      {/* <ParallaxPage /> */}
-
-      <div style={{ width: '100%', height: '100%', background: '#253237' }}>
-        <Parallax ref={parallax} pages={3}>
-          <ParallaxLayer
-            offset={1}
-            speed={1}
-            style={{ backgroundColor: '#805E73' }}
-          />
-          <ParallaxLayer
-            offset={2}
-            speed={1}
-            style={{ backgroundColor: '#87BCDE' }}
-          />
-
-          <ParallaxLayer
-            offset={0}
-            speed={0}
-            factor={3}
-            style={{
-              backgroundImage: url('stars', true),
-              backgroundSize: 'cover',
-            }}
-          />
-
-          <ParallaxLayer
-            offset={1.3}
-            speed={-0.3}
-            style={{ pointerEvents: 'none' }}
-          >
-            <img
-              src={url('satellite4')}
-              style={{ width: '15%', marginLeft: '70%' }}
-            />
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1} speed={0.8} style={{ opacity: 0.1 }}>
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '20%', marginLeft: '55%' }}
-            />
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '10%', marginLeft: '15%' }}
-            />
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1.75} speed={0.5} style={{ opacity: 0.1 }}>
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '20%', marginLeft: '70%' }}
-            />
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '20%', marginLeft: '40%' }}
-            />
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1} speed={0.2} style={{ opacity: 0.2 }}>
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '10%', marginLeft: '10%' }}
-            />
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '20%', marginLeft: '75%' }}
-            />
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1.6} speed={-0.1} style={{ opacity: 0.4 }}>
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '20%', marginLeft: '60%' }}
-            />
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '25%', marginLeft: '30%' }}
-            />
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '10%', marginLeft: '80%' }}
-            />
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={2.6} speed={0.4} style={{ opacity: 0.6 }}>
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '20%', marginLeft: '5%' }}
-            />
-            <img
-              src={url('cloud')}
-              style={{ display: 'block', width: '15%', marginLeft: '75%' }}
-            />
-          </ParallaxLayer>
-
-          <ParallaxLayer
-            offset={2.5}
-            speed={-0.4}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              pointerEvents: 'none',
-            }}
-          >
-            <img src={url('earth')} style={{ width: '60%' }} />
-          </ParallaxLayer>
-
-          <ParallaxLayer
-            offset={2}
-            speed={-0.3}
-            style={{
-              backgroundSize: '80%',
-              backgroundPosition: 'center',
-              backgroundImage: url('clients', true),
-            }}
-          />
-
-          <ParallaxLayer
-            offset={0}
-            speed={0.1}
-            onClick={() => parallax.current && parallax.current.scrollTo(1)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <img src={url('server')} style={{ width: '20%' }} />
-          </ParallaxLayer>
-
-          <ParallaxLayer
-            offset={1}
-            speed={0.1}
-            onClick={() => parallax.current && parallax.current.scrollTo(2)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <img src={url('bash')} style={{ width: '40%' }} />
-          </ParallaxLayer>
-
-          <ParallaxLayer
-            offset={2}
-            speed={-0}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            onClick={() => parallax.current && parallax.current.scrollTo(0)}
-          >
-            <img src={url('clients-main')} style={{ width: '40%' }} />
-          </ParallaxLayer>
-        </Parallax>
-      </div>
-      {/* <Navbar className="bg-white shadow-lg rounded-lg" /> */}
-      <h1 className="text-3xl text-orange-600 font-bold underline">
-        Hello world!
-      </h1>
-
-      <Modal>
-        <ModalTrigger className="mt-10 px-6 py-3 bg-black dark:bg-white dark:text-black text-white rounded-lg shadow-md hover:bg-gray-800 transition">
-          Open Gallery
-        </ModalTrigger>
-        <ModalBody>
-          <ModalContent>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {images.map((src, index) => (
-                <Image
-                  key={index}
-                  src={src}
-                  alt={`Gallery image ${index + 1}`}
-                  width={300}
-                  height={200}
-                  className="rounded-lg"
-                />
-              ))}
-            </div>
-          </ModalContent>
-        </ModalBody>
-      </Modal>
     </main>
   );
 }
